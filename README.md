@@ -134,7 +134,7 @@ display:none;
 </div>
 
 <div class="credit">
-Created by AWS | لُب
+Created by 🩵 AWS | لُب
 </div>
 
 <audio id="sound">

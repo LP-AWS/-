@@ -1,2 +1,196 @@
-# -
-🎁🎁🎁
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+<meta charset="UTF-8">
+<title>هدية 🎁</title>
+
+<style>
+
+body{
+margin:0;
+font-family:Arial;
+background:radial-gradient(circle,#111,#000);
+color:white;
+display:flex;
+justify-content:center;
+align-items:center;
+height:100vh;
+flex-direction:column;
+overflow:hidden;
+text-align:center;
+}
+
+h1{
+margin-bottom:30px;
+}
+
+.scene{
+perspective:800px;
+}
+
+.box{
+width:140px;
+height:140px;
+background:#e63946;
+position:relative;
+transform-style:preserve-3d;
+cursor:pointer;
+transition:transform 1s;
+animation:float 2s infinite ease-in-out;
+}
+
+@keyframes float{
+0%{transform:translateY(0)}
+50%{transform:translateY(-10px)}
+100%{transform:translateY(0)}
+}
+
+.lid{
+position:absolute;
+top:-30px;
+width:140px;
+height:30px;
+background:#ff6b6b;
+transition:transform 1s;
+transform-origin:bottom;
+}
+
+.ribbon{
+position:absolute;
+background:#ffd166;
+}
+
+.ribbon.v{
+width:20px;
+height:140px;
+left:60px;
+}
+
+.ribbon.h{
+height:20px;
+width:140px;
+top:60px;
+}
+
+.message{
+display:none;
+font-size:28px;
+margin-top:40px;
+animation:fade 1s ease-in;
+}
+
+@keyframes fade{
+from{opacity:0;transform:translateY(20px)}
+to{opacity:1;transform:translateY(0)}
+}
+
+.credit{
+position:fixed;
+bottom:15px;
+opacity:0.7;
+font-size:14px;
+}
+
+.confetti{
+position:absolute;
+font-size:20px;
+animation:fall 3s linear forwards;
+}
+
+@keyframes fall{
+0%{transform:translateY(-100px)}
+100%{transform:translateY(100vh)}
+}
+
+.count{
+font-size:40px;
+margin-top:20px;
+display:none;
+}
+
+</style>
+</head>
+
+<body>
+
+<h1>لديك هدية 🎁</h1>
+
+<div class="scene">
+<div class="box" onclick="start()" id="box">
+<div class="lid" id="lid"></div>
+<div class="ribbon v"></div>
+<div class="ribbon h"></div>
+</div>
+</div>
+
+<div class="count" id="count"></div>
+
+<div class="message" id="msg">
+🌙 عيد فطر مبارك 🌙  
+<br><br>
+كل عام وأنتم بخير  
+<br>
+أسأل الله أن يجعل أيامكم مليئة بالسعادة
+</div>
+
+<div class="credit">
+Created by AWS | لُب
+</div>
+
+<audio id="sound">
+<source src="https://www.soundjay.com/misc/sounds/bell-ringing-05.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+
+let n=3;
+
+function start(){
+
+document.getElementById("count").style.display="block";
+document.getElementById("count").innerHTML=n;
+
+let interval=setInterval(()=>{
+
+n--;
+document.getElementById("count").innerHTML=n;
+
+if(n==0){
+clearInterval(interval);
+openGift();
+}
+
+},1000);
+
+}
+
+function openGift(){
+
+document.getElementById("count").style.display="none";
+
+let lid=document.getElementById("lid");
+lid.style.transform="rotateX(-120deg)";
+
+document.getElementById("msg").style.display="block";
+
+document.getElementById("sound").play();
+
+for(let i=0;i<80;i++){
+
+let conf=document.createElement("div");
+conf.className="confetti";
+conf.innerHTML="🎉";
+
+conf.style.left=Math.random()*100+"vw";
+conf.style.animationDuration=(2+Math.random()*2)+"s";
+
+document.body.appendChild(conf);
+
+}
+
+}
+
+</script>
+
+</body>
+</html>
